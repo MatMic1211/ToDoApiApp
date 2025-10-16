@@ -13,7 +13,7 @@ public class TodoRepository : ITodoRepository
     public async Task<IEnumerable<TodoItem>> GetAllAsync() =>
         await _db.Todos.AsNoTracking().OrderBy(t => t.DueAt).ToListAsync();
 
-    public async Task<TodoItem?> GetByIdAsync(Guid id) =>
+    public async Task<TodoItem?> GetByIdAsync(int id) =>
         await _db.Todos.FindAsync(id);
 
     public async Task<IEnumerable<TodoItem>> GetIncomingAsync(DateTimeOffset from, DateTimeOffset to) =>

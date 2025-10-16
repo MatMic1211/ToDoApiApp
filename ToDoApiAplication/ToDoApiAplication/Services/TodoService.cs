@@ -14,7 +14,7 @@ public class TodoService
 
     public Task<IEnumerable<TodoItem>> GetAllAsync() => _repo.GetAllAsync();
 
-    public Task<TodoItem?> GetByIdAsync(Guid id) => _repo.GetByIdAsync(id);
+    public Task<TodoItem?> GetByIdAsync(int id) => _repo.GetByIdAsync(id);
 
     public Task<IEnumerable<TodoItem>> GetIncomingAsync(DateTimeOffset from, DateTimeOffset to)
         => _repo.GetIncomingAsync(from, to);
@@ -29,7 +29,7 @@ public class TodoService
         return await _repo.AddAsync(item);
     }
 
-    public async Task<bool> UpdateAsync(Guid id, TodoItem updated)
+    public async Task<bool> UpdateAsync(int id, TodoItem updated)
     {
         var existing = await _repo.GetByIdAsync(id);
         if (existing == null) return false;
@@ -45,7 +45,7 @@ public class TodoService
         return true;
     }
 
-    public async Task<bool> UpdatePercentAsync(Guid id, int percent)
+    public async Task<bool> UpdatePercentAsync(int id, int percent)
     {
         var existing = await _repo.GetByIdAsync(id);
         if (existing == null) return false;
@@ -58,7 +58,7 @@ public class TodoService
         return true;
     }
 
-    public async Task<bool> MarkDoneAsync(Guid id)
+    public async Task<bool> MarkDoneAsync(int id)
     {
         var existing = await _repo.GetByIdAsync(id);
         if (existing == null) return false;
@@ -71,7 +71,7 @@ public class TodoService
         return true;
     }
 
-    public async Task<bool> DeleteAsync(Guid id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var existing = await _repo.GetByIdAsync(id);
         if (existing == null) return false;

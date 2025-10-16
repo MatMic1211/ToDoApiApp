@@ -18,8 +18,8 @@ public class TodoController : ControllerBase
     public async Task<ActionResult<IEnumerable<TodoItem>>> GetAll()
         => Ok(await _service.GetAllAsync());
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<TodoItem>> Get(Guid id)
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<TodoItem>> Get(int id)
     {
         var item = await _service.GetByIdAsync(id);
         if (item == null) return NotFound();
@@ -61,4 +61,18 @@ public class TodoController : ControllerBase
         var created = await _service.AddAsync(todo);
         return CreatedAtAction(nameof(Get), new { id = created.Id }, created);
     }
+
+    [HttpPut("{id:int}")]
+    public async Task<IActionResult> Update(int id, [FromBody] TodoItem todo)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        if (id != todo.Id)
+            return BadRequest("ID w URL i w body muszą być takie same.");
+
+        var ok = await _service.UpdateAsync(id, todo);
+        return ok ? NoContent() : NotFound();
+    }
+
 }

@@ -26,6 +26,34 @@ public class TodoController : ControllerBase
         return Ok(item);
     }
 
+    [HttpGet("incoming")]
+    public async Task<ActionResult<IEnumerable<TodoItem>>> GetIncoming([FromQuery] string period = "today")
+    {
+        var now = DateTimeOffset.UtcNow;
+        DateTimeOffset from = now, to = now;
+
+        switch (period.ToLower())
+        {
+            case "tomorrow":
+                from = now.Date.AddDays(1);
+                to = from.AddDays(1).AddTicks(-1);
+                break;
+            case "week":
+                var monday = now.Date.AddDays(-(int)now.UtcDateTime.DayOfWeek + 1);
+                from = monday;
+                to = from.AddDays(7).AddTicks(-1);
+                break;
+            default:
+                from = now.Date;
+                to = from.AddDays(1).AddTicks(-1);
+                break;
+        }
+
+        var items = await _service.GetIncomingAsync(from, to);
+        return Ok(items);
+    }
+
+
     [HttpPost]
     public async Task<ActionResult<TodoItem>> Create([FromBody] TodoItem todo)
     {

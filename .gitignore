@@ -1,0 +1,16 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ToDoApiAplication/.vs/ToDoApiAplication/FileContentIndex
+/ToDoApiAplication/.vs/ToDoApiAplication/v17/.suo
+/ToDoApiAplication/.vs/ToDoApiAplication/v17/DocumentLayout.json
+/ToDoApiAplication/ToDoApiAplication/obj/Debug/net8.0/ref/ToDoApiAplication.dll
+/ToDoApiAplication/ToDoApiAplication/obj/Debug/net8.0/apphost.exe
+/ToDoApiAplication/ToDoApiAplication/obj/Debug/net8.0/ToDoApiAplication.AssemblyInfo.cs
+/ToDoApiAplication/ToDoApiAplication/obj/Debug/net8.0/ToDoApiAplication.AssemblyInfoInputs.cache
+/ToDoApiAplication/ToDoApiAplication/obj/Debug/net8.0/ToDoApiAplication.csproj.CoreCompileInputs.cache
+/ToDoApiAplication/ToDoApiAplication/obj/Debug/net8.0/ToDoApiAplication.dll
+/ToDoApiAplication/ToDoApiAplication/obj/Debug/net8.0/ToDoApiAplication.pdb
+/ToDoApiAplication/ToDoApiAplication/obj/Debug/net8.0/ToDoApiAplication.sourcelink.json
+/ToDoApiAplication/.vs/ToDoApiAplication/DesignTimeBuild/.dtbcache.v2

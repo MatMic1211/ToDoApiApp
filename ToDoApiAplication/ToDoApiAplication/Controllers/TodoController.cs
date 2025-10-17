@@ -90,4 +90,11 @@ public class TodoController : ControllerBase
         var ok = await _service.UpdatePercentAsync(id, percent);
         return ok ? NoContent() : NotFound();
     }
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var ok = await _service.DeleteAsync(id);
+        return ok ? NoContent() : NotFound();
+    }
 }

@@ -11,7 +11,7 @@ builder.Services.AddDbContext<TodoContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<ITodoRepository, TodoRepository>();
-builder.Services.AddScoped<TodoService>();
+builder.Services.AddScoped<ITodoService, TodoService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

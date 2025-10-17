@@ -3,7 +3,7 @@ using TodoApi.Repositories;
 
 namespace TodoApi.Services;
 
-public class TodoService
+public class TodoService : ITodoService
 {
     private readonly ITodoRepository _repo;
 
@@ -22,9 +22,7 @@ public class TodoService
     public async Task<TodoItem> AddAsync(TodoItem item)
     {
         if (item.DueAt <= DateTimeOffset.UtcNow)
-        {
             item.DueAt = DateTimeOffset.UtcNow;
-        }
 
         return await _repo.AddAsync(item);
     }

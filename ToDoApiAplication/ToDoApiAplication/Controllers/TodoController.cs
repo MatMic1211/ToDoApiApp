@@ -8,8 +8,8 @@ namespace TodoApi.Controllers;
 [Route("api/[controller]")]
 public class TodoController : ControllerBase
 {
-    private readonly TodoService _service;
-    public TodoController(TodoService service)
+    private readonly ITodoService _service;
+    public TodoController(ITodoService service)
     {
         _service = service;
     }

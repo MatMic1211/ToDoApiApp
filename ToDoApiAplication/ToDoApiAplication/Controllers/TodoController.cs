@@ -75,4 +75,11 @@ public class TodoController : ControllerBase
         return ok ? NoContent() : NotFound();
     }
 
+    [HttpPatch("{id:int}/percent")]
+    public async Task<IActionResult> UpdatePercent(int id, [FromBody] int percent)
+    {
+        if (percent < 0 || percent > 100) return BadRequest("Percent must be 0-100");
+        var ok = await _service.UpdatePercentAsync(id, percent);
+        return ok ? NoContent() : NotFound();
+    }
 }

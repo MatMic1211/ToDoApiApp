@@ -27,9 +27,9 @@ public class TodoService : ITodoService
         return await _repo.AddAsync(item);
     }
 
-    public async Task<bool> UpdateAsync(int id, TodoItem updated)
+    public async Task<bool> UpdateAsync(TodoItem updated)
     {
-        var existing = await _repo.GetByIdAsync(id);
+        var existing = await _repo.GetByIdAsync(updated.Id);
         if (existing == null) return false;
 
         existing.Title = updated.Title;

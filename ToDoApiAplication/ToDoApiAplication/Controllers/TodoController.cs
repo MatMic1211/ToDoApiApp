@@ -60,18 +60,17 @@ public class TodoController : ControllerBase
         var created = await _service.AddAsync(todo);
         return CreatedAtAction(nameof(Get), new { id = created.Id }, created);
     }
-
     [HttpPut]
     public async Task<IActionResult> Update([FromBody] TodoItem todo)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        var ok = await _service.UpdateAsync(todo.Id, todo);
+        var ok = await _service.UpdateAsync(todo);
         return ok ? NoContent() : NotFound();
     }
 
-    [HttpPut("{id:int}/done")]
+    [HttpPatch("{id:int}/done")]
     public async Task<IActionResult> MarkDone(int id)
     {
         var ok = await _service.MarkDoneAsync(id);

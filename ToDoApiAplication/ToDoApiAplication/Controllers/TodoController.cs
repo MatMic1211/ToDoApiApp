@@ -62,6 +62,7 @@ public class TodoController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = created.Id }, created);
     }
 
+
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, [FromBody] TodoItem todo)
     {
@@ -72,6 +73,13 @@ public class TodoController : ControllerBase
             return BadRequest("ID w URL i w body muszą być takie same.");
 
         var ok = await _service.UpdateAsync(id, todo);
+        return ok ? NoContent() : NotFound();
+    }
+
+    [HttpPut("{id:int}/done")]
+    public async Task<IActionResult> MarkDone(int id)
+    {
+        var ok = await _service.MarkDoneAsync(id);
         return ok ? NoContent() : NotFound();
     }
 
